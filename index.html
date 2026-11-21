@@ -138,6 +138,9 @@
   .browser { border-radius: 18px; overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: 0 24px 50px -28px rgba(31, 35, 48, .35); }
   .browser .bar { height: 30px; display: flex; gap: 7px; align-items: center; padding: 0 14px; background: var(--blush); border-bottom: 1px solid var(--line); }
   .browser .bar i { width: 10px; height: 10px; border-radius: 50%; background: #E9D6CB; }
+  .plan-shot { position: relative; padding-right: 70px; }
+  .plan-shot .agenda-mini { position: absolute; right: 0; bottom: -36px; width: 34%; max-width: 190px; border-radius: 28px; padding: 6px; background: var(--ink); box-shadow: 0 24px 50px -24px rgba(31, 35, 48, .5); }
+  .plan-shot .agenda-mini img { border-radius: 22px; }
   .phones { display: flex; justify-content: center; gap: 22px; }
   .phones .mini { width: 46%; max-width: 250px; border-radius: 34px; padding: 8px; background: var(--ink); box-shadow: 0 24px 50px -24px rgba(31, 35, 48, .45); }
   .phones .mini img { border-radius: 27px; }
@@ -312,7 +315,7 @@
       <h2 id="como-h">Do consultório para a casa da criança em três passos</h2>
       <p class="lead">Você continua no comando da terapia. O Falalá organiza o material e leva o treino para casa.</p>
       <ol class="steps">
-        <li><h3>Cadastre o paciente</h3><p>Nome, idade e o som que ele está trabalhando. O Falalá sugere o programa de sessões certo.</p></li>
+        <li><h3>Monte o plano</h3><p>Cadastre a criança, marque as queixas e quantas sessões. O Falalá prepara cada sessão e coloca as datas na sua agenda.</p></li>
         <li><h3>Faça a sessão jogando</h3><p>No tablet ou no celular, a criança ouve, repete e se vê no espelho. Você marca com um toque: falou certinho, com ajuda ou ainda não.</p></li>
         <li><h3>Mande a tarefa de casa</h3><p>Um link vai para o WhatsApp da família. A criança treina em casa, o responsável grava a voz e o resultado chega no seu painel.</p></li>
       </ol>
@@ -325,6 +328,20 @@
 
       <div class="row">
         <div>
+          <h3>Plano de tratamento pronto em um minuto</h3>
+          <p>Marque as queixas da criança, quantas sessões vão ser e os dias de atendimento. O Falalá monta cada sessão com os exercícios certos e já coloca as datas na agenda.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Pacote de 10 sessões, ou quantas você quiser, com avaliação e devolutiva para a família</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Remarque uma sessão e as próximas acompanham</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Aviso no dia da sessão e lembrete na agenda do seu celular</li>
+          </ul>
+        </div>
+        <div class="shot plan-shot"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="img/plano.webp" width="1600" height="1000" loading="lazy" alt="Plano de tratamento do Pedro no Falalá: 10 sessões com datas, 3 feitas e a sessão de hoje pronta para começar"></div>
+          <div class="mini agenda-mini"><img src="img/agenda.webp" width="600" height="1298" loading="lazy" alt="Agenda do Falalá no celular com a sessão de hoje e as próximas"></div></div>
+      </div>
+
+      <div class="row flip">
+        <div>
           <h3>Programas de sessões prontos</h3>
           <p>Cada som tem um roteiro de sessões, da respiração ao trava-língua. Você abre a sessão do dia e já sabe o que fazer, quanto tempo leva e o que mandar para casa.</p>
           <ul>
@@ -336,7 +353,7 @@
         <div class="shot browser"><div class="bar"><i></i><i></i><i></i></div><img src="img/programa.webp" width="1600" height="1000" loading="lazy" alt="Programa do R no Falalá: sessão 1 com respiração, movimentos de boca e escuta, cada exercício com repetições e tempo"></div>
       </div>
 
-      <div class="row flip">
+      <div class="row">
         <div>
           <h3>Modo criança, feito para segurar a atenção</h3>
           <p>Uma palavra por vez, com figura grande, som marcado e voz para ouvir de novo. A criança ganha estrelas, ouve a própria gravação e se vê no espelho da câmera.</p>
@@ -352,7 +369,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row flip">
         <div>
           <h3>Tarefa de casa que a família consegue fazer</h3>
           <p>Você escolhe os exercícios, escreve um recado e manda o link. A família abre no celular, sem baixar app e sem criar conta. Cada treino feito aparece no seu painel, com acertos e áudio.</p>
@@ -367,7 +384,7 @@
         </div>
       </div>
 
-      <div class="row flip">
+      <div class="row">
         <div>
           <h3>Evolução que dá para mostrar aos pais</h3>
           <p>Cada sessão e cada treino em casa viram um ponto no gráfico. Você vê onde a criança trava e imprime um relatório simples para entregar à família.</p>
@@ -411,6 +428,7 @@
           <p class="price-note">Cancele quando quiser.</p>
           <ul>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Pacientes e sessões ilimitados</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Plano de tratamento com agenda e avisos</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>8 trilhas e programas de sessões prontos</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Tarefa de casa por link, com gravação</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Evolução e relatório de cada paciente</li>
@@ -447,6 +465,7 @@
       </div>
       <div>
         <details><summary>Posso testar antes de pagar?</summary><p>Pode. Crie sua conta e use tudo por 3 dias, sem cartão. Quando o teste acabar, seus pacientes ficam guardados e você escolhe um plano para continuar. Se preferir assinar direto, a garantia de 7 dias também vale.</p></details>
+        <details><summary>Como funciona o plano de tratamento?</summary><p>Você marca as queixas da criança (troca do R, ceceio, respiração pela boca e outras), quantas sessões e os dias. O Falalá monta as sessões na ordem, com respiração, movimentos de boca, escuta, palavras, frases e trava-línguas, e coloca tudo na agenda. Você revisa, troca datas e ajusta conforme a evolução.</p></details>
         <details><summary>Preciso instalar alguma coisa?</summary><p>Não. O Falalá abre no navegador, em app.usefalala.online. Funciona no celular, no tablet e no computador. Se quiser, dá para adicionar um atalho na tela inicial.</p></details>
         <details><summary>Os pais precisam criar conta ou baixar app?</summary><p>Não. Você manda um link pelo WhatsApp e a família abre direto no celular. Só você, fonoaudióloga, tem login.</p></details>
         <details><summary>Para qual idade o Falalá serve?</summary><p>Foi pensado para crianças em idade de alfabetização e pré-escola, por volta dos 4 aos 10 anos. Quem decide se o material serve para cada paciente é você.</p></details>
