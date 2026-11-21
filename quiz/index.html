@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quanto tempo você perde montando material de fala? · Falalá</title>
+<meta name="description" content="Quiz rápido para fonoaudiólogas que atendem crianças: descubra quanto tempo vai para montar material e receba um plano pronto para os seus pacientes.">
+<meta property="og:title" content="Fono, quanto tempo você perde montando material?">
+<meta property="og:description" content="7 perguntas, sem cadastro. Veja quanto tempo dá para recuperar por mês.">
+<meta property="og:image" content="https://usefalala.online/img/og.png">
+<meta property="og:url" content="https://usefalala.online/quiz/">
+<meta name="theme-color" content="#FF6A3D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 4c11 0 20 8.4 20 19.5S35 43 24 43c-3 0-5.8-.6-8.3-1.7L6 44l2.6-8.6C5.7 32 4 28 4 23.5 4 12.4 13 4 24 4z' fill='%23FF6A3D'/%3E%3Cpath d='M15 25c2.5 5 15.5 5 18 0' stroke='%23fff' stroke-width='3.4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='17.5' cy='18' r='2.6' fill='%23fff'/%3E%3Ccircle cx='30.5' cy='18' r='2.6' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+<!-- Pixel da Meta: cole aqui o código quando criar o pixel. O quiz já envia os eventos (ViewContent, Lead e InitiateCheckout) se o fbq existir. -->
+<style>
+  :root {
+    --coral: #FF6A3D; --coral-ink: #C2410C; --coral-soft: #FFE7DC;
+    --ink: #1F2330; --ink-2: #555B6B; --ink-3: #868B98;
+    --paper: #FFFCF9; --blush: #FFF2EB; --line: #EFE4DC;
+    --green: #1F8A70; --green-soft: #DDF2EA; --sun: #FFC93C;
+    --display: "Nunito", "Trebuchet MS", system-ui, sans-serif;
+    --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; min-height: 100dvh; font-family: var(--body); font-size: 18px; line-height: 1.55; color: var(--ink); background: var(--paper); display: flex; flex-direction: column; }
+  h1, h2 { font-family: var(--display); font-weight: 900; letter-spacing: -.02em; line-height: 1.1; margin: 0; }
+  p { margin: 0; }
+  :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 10px; }
+  .wrap { width: min(640px, 100% - 36px); margin-inline: auto; }
+
+  header { padding: 18px 0 0; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .logo { display: inline-flex; align-items: center; gap: 8px; font: 900 22px/1 var(--display); text-decoration: none; color: var(--ink); }
+  .logo svg { width: 32px; height: 32px; }
+  .back { border: 0; background: none; font: 600 16px var(--body); color: var(--ink-2); cursor: pointer; padding: 8px 4px; display: inline-flex; align-items: center; gap: 4px; visibility: hidden; }
+  .back.on { visibility: visible; }
+  .progress { height: 8px; border-radius: 99px; background: var(--line); margin-top: 16px; overflow: hidden; }
+  .progress i { display: block; height: 100%; width: 0; background: var(--coral); border-radius: 99px; transition: width .35s ease; }
+  .count { font-size: 14px; color: var(--ink-3); margin-top: 8px; min-height: 22px; }
+
+  main { flex: 1; padding: 22px 0 40px; }
+  .screen { animation: in .35s ease both; }
+  @keyframes in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  /* abertura */
+  .intro { text-align: center; padding-top: 8px; }
+  .intro .mascot { width: 116px; margin: 0 auto 18px; display: block; }
+  .intro h1 { font-size: clamp(32px, 7vw, 46px); }
+  .intro p { color: var(--ink-2); margin: 16px auto 28px; max-width: 30em; }
+  .intro .small { font-size: 15px; color: var(--ink-3); margin-top: 14px; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 58px; padding: 0 30px; border-radius: 16px; font: 700 18px/1 var(--body); text-decoration: none; border: 2px solid transparent; cursor: pointer; }
+  .btn.primary { background: var(--coral); color: #fff; box-shadow: 0 4px 0 #D9502A; }
+  .btn.primary:active { transform: translateY(3px); box-shadow: 0 1px 0 #D9502A; }
+  .btn.ghost { background: #fff; color: var(--ink); border-color: var(--line); }
+  .btn.block { width: 100%; }
+  .btn[disabled] { opacity: .45; cursor: not-allowed; box-shadow: none; }
+
+  /* pergunta */
+  .q h2 { font-size: clamp(26px, 5.6vw, 34px); }
+  .q .help { color: var(--ink-2); margin-top: 8px; font-size: 16px; }
+  .opts { display: grid; gap: 10px; margin-top: 22px; }
+  .opt { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; padding: 16px 18px; min-height: 62px; border-radius: 16px; border: 2px solid var(--line); background: #fff; font: 600 18px/1.3 var(--body); color: var(--ink); cursor: pointer; }
+  .opt:hover { border-color: #E3CFC3; }
+  .opt .e { font-size: 26px; line-height: 1; flex: none; width: 32px; text-align: center; }
+  .opt .box { width: 24px; height: 24px; border-radius: 7px; border: 2px solid #D9C8BD; flex: none; display: grid; place-items: center; }
+  .opt[aria-pressed=true] { border-color: var(--coral); background: var(--coral-soft); }
+  .opt[aria-pressed=true] .box { background: var(--coral); border-color: var(--coral); }
+  .opt[aria-pressed=true] .box::after { content: ""; width: 10px; height: 6px; border-left: 3px solid #fff; border-bottom: 3px solid #fff; transform: rotate(-45deg) translate(1px, -1px); }
+  .opt small { display: block; font-weight: 500; font-size: 15px; color: var(--ink-2); margin-top: 2px; }
+  .next { margin-top: 18px; }
+
+  /* resultado */
+  .res-head { text-align: center; }
+  .res-head .tag { display: inline-block; font-weight: 700; font-size: 15px; color: var(--coral-ink); background: var(--coral-soft); padding: 6px 14px; border-radius: 99px; }
+  .big { font: 900 clamp(64px, 18vw, 96px)/1 var(--display); color: var(--coral); margin: 16px 0 4px; letter-spacing: -.04em; }
+  .big small { font-size: .38em; color: var(--ink); letter-spacing: 0; margin-left: 6px; }
+  .res-head p { color: var(--ink-2); max-width: 32em; margin: 8px auto 0; }
+  .res-head .eq { margin-top: 14px; font-weight: 700; color: var(--ink); }
+  .fit { margin-top: 32px; background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 26px 24px; }
+  .fit h2 { font-size: 26px; margin-bottom: 14px; }
+  .fit ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .fit li { display: grid; grid-template-columns: 26px 1fr; gap: 12px; }
+  .fit li svg { width: 24px; height: 24px; color: var(--green); margin-top: 2px; }
+  .fit li b { display: block; }
+  .fit li span { color: var(--ink-2); font-size: 16px; }
+  .shot { margin-top: 26px; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 24px 50px -30px rgba(31, 35, 48, .4); background: #fff; }
+  .shot img { display: block; width: 100%; height: auto; }
+  .offer { margin-top: 32px; text-align: center; }
+  .offer h2 { font-size: 28px; }
+  .offer .lead { color: var(--ink-2); margin-top: 8px; }
+  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; text-align: left; }
+  .plan { position: relative; border: 2px solid var(--line); background: #fff; border-radius: 20px; padding: 20px 18px; display: flex; flex-direction: column; gap: 4px; }
+  .plan.best { border-color: var(--coral); }
+  .plan .tagp { position: absolute; top: -13px; left: 16px; background: var(--coral); color: #fff; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 99px; }
+  .plan h3 { margin: 0; font: 800 18px var(--display); }
+  .plan .price { font: 900 40px/1.05 var(--display); letter-spacing: -.03em; }
+  .plan .price span { font: 600 16px var(--body); color: var(--ink-2); }
+  .plan .note { font-size: 14px; color: var(--ink-2); min-height: 40px; }
+  .plan .btn { margin-top: 10px; min-height: 52px; font-size: 17px; padding: 0 12px; }
+  .guarantee { margin-top: 16px; font-size: 15px; color: var(--ink-2); }
+  .guarantee b { color: var(--ink); }
+  .trial { margin-top: 12px; font-size: 16px; color: var(--ink-2); }
+  .trial a, .more a { color: var(--coral-ink); font-weight: 700; }
+  .more { margin-top: 22px; text-align: center; font-size: 15px; color: var(--ink-3); }
+  footer { padding: 18px 0 28px; text-align: center; font-size: 14px; color: var(--ink-3); }
+  footer a { color: var(--ink-3); }
+
+  @media (max-width: 520px) {
+    body { font-size: 17px; }
+    .plans { grid-template-columns: 1fr; }
+    .plan .note { min-height: 0; }
+    .fit { padding: 22px 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .screen { animation: none; }
+    .progress i { transition: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <button class="back" id="back" type="button" aria-label="Voltar para a pergunta anterior">‹ Voltar</button>
+    <a class="logo" href="/" aria-label="Falalá">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4c11 0 20 8.4 20 19.5S35 43 24 43c-3 0-5.8-.6-8.3-1.7L6 44l2.6-8.6C5.7 32 4 28 4 23.5 4 12.4 13 4 24 4z" fill="#FF6A3D"/><path d="M15 25c2.5 5 15.5 5 18 0" stroke="#fff" stroke-width="3.4" fill="none" stroke-linecap="round"/><circle cx="17.5" cy="18" r="2.6" fill="#fff"/><circle cx="30.5" cy="18" r="2.6" fill="#fff"/></svg>
+      Falalá
+    </a>
+    <span style="width:72px" aria-hidden="true"></span>
+  </div>
+  <div class="wrap"><div class="progress" aria-hidden="true"><i id="bar"></i></div><p class="count" id="count" aria-live="polite"></p></div>
+</header>
+
+<main><div class="wrap" id="app"></div></main>
+
+<footer><div class="wrap">© 2026 Falalá · Ferramenta de apoio para fonoaudiólogas · <a href="https://wa.me/5598988273662">WhatsApp</a></div></footer>
+
+<script>
+(function () {
+  const CHECKOUT = {
+    mensal: "https://checkout.wiven.com.br/checkout/cmwqq03aq0kle01psjudxxkbk?offer=BCIMVBF",
+    anual: "https://checkout.wiven.com.br/checkout/cmwqq03aq0kle01psjudxxkbk?offer=RL5YEJL"
+  };
+  const TRIAL = "https://app.usefalala.online/?cadastro=1";
+
+  // leva as UTMs do anúncio para o checkout e para o teste
+  const utm = (() => {
+    const out = new URLSearchParams();
+    new URLSearchParams(location.search).forEach((v, k) => { if (/^(utm_|fbclid|src|sck)/.test(k)) out.set(k, v); });
+    return out;
+  })();
+  const withUtm = (url) => { const u = new URL(url); utm.forEach((v, k) => u.searchParams.set(k, v)); return u.toString(); };
+  const track = (name, data) => { try { if (window.fbq) window.fbq(/^(ViewContent|Lead|InitiateCheckout)$/.test(name) ? "track" : "trackCustom", name, data || {}); } catch (e) {} };
+
+  const Q = [
+    { id: "kids", title: "Quantas crianças você atende por semana?", opts: [
+      { v: 4, e: "🧒", t: "Até 5" }, { v: 10, e: "👧", t: "De 6 a 15" }, { v: 22, e: "👫", t: "De 16 a 30" }, { v: 35, e: "🏫", t: "Mais de 30" }] },
+    { id: "where", title: "Onde você atende?", opts: [
+      { v: "proprio", e: "🏠", t: "Consultório próprio" }, { v: "clinica", e: "🏥", t: "Clínica ou consultório compartilhado" },
+      { v: "domiciliar", e: "🚗", t: "Atendimento domiciliar" }, { v: "escola", e: "💻", t: "Escola ou online" }] },
+    { id: "complaints", multi: true, title: "Quais queixas mais aparecem para você?", help: "Pode marcar mais de uma.", opts: [
+      { v: "r", t: "Troca ou omissão do R", s: "“lato” por “rato”" }, { v: "s", t: "Língua entre os dentes no S e no Z", s: "ceceio" },
+      { v: "l", t: "L e LH", s: "“pranta” por “planta”" }, { v: "ch", t: "CH e J", s: "“sapéu” por “chapéu”" },
+      { v: "trocas", t: "Trocas P/B, T/D, F/V", s: "“pola” por “bola”" }, { v: "resp", t: "Respira pela boca", s: "boca aberta, postura de repouso" },
+      { v: "silabas", t: "Sílabas e rimas", s: "consciência fonológica" }] },
+    { id: "prep", title: "Quanto tempo por semana você passa montando material e planejando sessões?", opts: [
+      { v: 0.75, e: "⏱️", t: "Menos de 1 hora" }, { v: 2, e: "🕑", t: "De 1 a 3 horas" }, { v: 4, e: "🕓", t: "De 3 a 5 horas" }, { v: 6, e: "😮‍💨", t: "Mais de 5 horas" }] },
+    { id: "home", title: "A família faz os exercícios em casa?", opts: [
+      { v: "sempre", e: "🙌", t: "Sim, quase sempre" }, { v: "as-vezes", e: "🤷‍♀️", t: "Às vezes" },
+      { v: "nunca", e: "😕", t: "Quase nunca" }, { v: "nao-passo", e: "🙅‍♀️", t: "Nem passo tarefa, porque sei que não fazem" }] },
+    { id: "report", title: "Como você mostra a evolução da criança para os pais?", opts: [
+      { v: "relatorio", e: "📄", t: "Relatório escrito" }, { v: "conversa", e: "💬", t: "Conversa no fim da sessão" },
+      { v: "planilha", e: "📊", t: "Planilha ou anotações minhas" }, { v: "nao", e: "🫣", t: "Quase não mostro" }] },
+    { id: "pack", title: "Quantas sessões você costuma fechar por pacote?", opts: [
+      { v: 8, e: "8️⃣", t: "8 sessões" }, { v: 10, e: "🔟", t: "10 sessões" }, { v: 12, e: "📅", t: "12 ou mais" }, { v: 0, e: "➖", t: "Não trabalho com pacote" }] }
+  ];
+
+  const A = {};
+  let step = -1;
+  const app = document.getElementById("app");
+  const bar = document.getElementById("bar");
+  const count = document.getElementById("count");
+  const back = document.getElementById("back");
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+  function setProgress() {
+    const total = Q.length;
+    const done = step < 0 ? 0 : step >= total ? total : step;
+    bar.style.width = (done / total) * 100 + "%";
+    count.textContent = step >= 0 && step < total ? `Pergunta ${step + 1} de ${total}` : step >= total ? "Seu resultado" : "";
+    back.classList.toggle("on", step >= 0 && step < total);
+  }
+
+  function intro() {
+    app.innerHTML = `<section class="screen intro">
+      <svg class="mascot" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 22c46 0 78 30 78 74s-30 82-78 82-78-38-78-82 32-74 78-74z" fill="#FFC93C"/><ellipse cx="62" cy="58" rx="16" ry="10" fill="#fff" opacity=".35"/><circle cx="74" cy="88" r="15" fill="#fff"/><circle cx="126" cy="88" r="15" fill="#fff"/><circle cx="77" cy="91" r="7" fill="#24324A"/><circle cx="129" cy="91" r="7" fill="#24324A"/><circle cx="56" cy="114" r="8" fill="#FFB0A0" opacity=".7"/><circle cx="144" cy="114" r="8" fill="#FFB0A0" opacity=".7"/><path d="M70 118c12 22 48 22 60 0" stroke="#24324A" stroke-width="7" fill="#fff" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h1>Fono, quanto tempo você perde montando material de fala?</h1>
+      <p>Responda 7 perguntas rápidas sobre o seu consultório. No fim, você vê quanto tempo vai para isso todo mês e como deixar as sessões prontas em um minuto.</p>
+      <button class="btn primary" id="go" type="button">Começar</button>
+      <p class="small">Leva 1 minuto · Não pedimos e-mail nem telefone</p>
+    </section>`;
+    document.getElementById("go").onclick = () => { track("QuizStart"); go(0); };
+    step = -1; setProgress();
+  }
+
+  function question() {
+    const q = Q[step];
+    const sel = A[q.id];
+    const pressed = (v) => q.multi ? (sel || []).includes(v) : sel === v;
+    app.innerHTML = `<section class="screen q" aria-labelledby="qt">
+      <h2 id="qt" tabindex="-1">${esc(q.title)}</h2>${q.help ? `<p class="help">${esc(q.help)}</p>` : ""}
+      <div class="opts" role="group" aria-labelledby="qt">${q.opts.map((o, i) => `<button class="opt" type="button" data-i="${i}" aria-pressed="${pressed(o.v)}">${q.multi ? '<span class="box" aria-hidden="true"></span>' : `<span class="e" aria-hidden="true">${o.e}</span>`}<span>${esc(o.t)}${o.s ? `<small>${esc(o.s)}</small>` : ""}</span></button>`).join("")}</div>
+      ${q.multi ? `<button class="btn primary block next" id="nx" type="button" ${(sel || []).length ? "" : "disabled"}>Continuar</button>` : ""}
+    </section>`;
+    app.querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => {
+      const o = q.opts[+b.dataset.i];
+      if (q.multi) {
+        const cur = new Set(A[q.id] || []);
+        cur.has(o.v) ? cur.delete(o.v) : cur.add(o.v);
+        A[q.id] = [...cur];
+        b.setAttribute("aria-pressed", cur.has(o.v));
+        document.getElementById("nx").disabled = !cur.size;
+      } else {
+        A[q.id] = o.v;
+        app.querySelectorAll(".opt").forEach(x => x.setAttribute("aria-pressed", x === b));
+        setTimeout(() => go(step + 1), 220);
+      }
+    }));
+    const nx = document.getElementById("nx");
+    if (nx) nx.onclick = () => go(step + 1);
+    document.getElementById("qt").focus({ preventScroll: true });
+  }
+
+  const LABEL = { r: "R", s: "S e Z (ceceio)", l: "L e LH", ch: "CH e J", trocas: "trocas P/B, T/D, F/V", resp: "respiração pela boca", silabas: "sílabas e rimas" };
+  const listPt = (arr) => arr.length <= 1 ? (arr[0] || "") : arr.slice(0, -1).join(", ") + " e " + arr[arr.length - 1];
+
+  function result() {
+    const hoursMonth = Math.max(1, Math.round((A.prep || 2) * 4.3));
+    const sessions = Math.max(1, Math.round(hoursMonth / 0.75));
+    const kids = A.kids || 10;
+    const comp = (A.complaints || []).map(c => LABEL[c]).filter(Boolean);
+    const items = [];
+    items.push({ t: comp.length ? `Programas prontos para ${listPt(comp)}` : "Programas prontos para os sons mais comuns",
+      s: "Cada sessão já vem montada: respiração, movimentos de boca, escuta, palavras, frases e trava-línguas, na ordem." });
+    if (A.pack) items.push({ t: `Seu pacote de ${A.pack === 12 ? "12" : A.pack} sessões planejado em um minuto`, s: "Marque as queixas e os dias. O Falalá monta as sessões, coloca as datas na agenda e avisa você no dia." });
+    else items.push({ t: "Plano de sessões com datas, mesmo sem pacote fechado", s: "Escolha quantas sessões e os dias. O Falalá monta tudo e avisa você no dia da sessão." });
+    if (A.home !== "sempre") items.push({ t: A.home === "nao-passo" ? "Tarefa de casa que a família faz de verdade" : "A família passa a treinar em casa", s: "Você manda um link pelo WhatsApp. A criança joga no celular, o responsável grava a voz e o resultado chega no seu painel." });
+    else items.push({ t: "Você vê o que a família fez em casa", s: "Cada treino feito em casa chega no seu painel, com acertos e gravação da voz." });
+    items.push({ t: A.report === "relatorio" ? "Relatório pronto, sem escrever do zero" : "Evolução em gráfico para mostrar aos pais", s: "Acerto por sessão, palavras que precisam de atenção e um relatório para imprimir ou salvar em PDF." });
+    if (A.where === "domiciliar" || A.where === "escola") items.push({ t: "Leve no celular ou no tablet", s: "Abre no navegador, sem instalar nada. Funciona onde você atende." });
+
+    app.innerHTML = `<section class="screen">
+      <div class="res-head">
+        <span class="tag">Seu resultado</span>
+        <p style="margin-top:16px">Pelas suas respostas, você passa cerca de</p>
+        <div class="big" aria-label="${hoursMonth} horas por mês">${hoursMonth}h<small>por mês</small></div>
+        <p>montando material e planejando sessões${kids >= 16 ? `, para ${kids >= 35 ? "mais de 30" : "cerca de " + kids} crianças por semana` : ""}.</p>
+        <p class="eq">É o tempo de uns ${sessions} atendimentos.</p>
+      </div>
+      <div class="fit"><h2>O que o Falalá faz por você</h2><ul>${items.map(i => `<li>${check}<div><b>${esc(i.t)}</b><span>${esc(i.s)}</span></div></li>`).join("")}</ul></div>
+      <div class="shot"><img src="/img/plano.webp" width="1600" height="1000" alt="Plano de tratamento no Falalá com 10 sessões, datas e a sessão de hoje pronta para começar"></div>
+      <div class="offer" id="oferta">
+        <h2>Comece hoje com o material pronto</h2>
+        <p class="lead">Pacientes ilimitados. Pix ou cartão, e você usa no mesmo dia.</p>
+        <div class="plans">
+          <div class="plan best"><span class="tagp">Mais econômico</span><h3>Anual</h3><div class="price">R$ 197 <span>/ano</span></div><p class="note">Sai por R$ 16,42 por mês.</p><a class="btn primary" data-plan="anual" href="${esc(withUtm(CHECKOUT.anual))}">Assinar o anual</a></div>
+          <div class="plan"><h3>Mensal</h3><div class="price">R$ 47 <span>/mês</span></div><p class="note">Cancele quando quiser.</p><a class="btn ghost" data-plan="mensal" href="${esc(withUtm(CHECKOUT.mensal))}">Assinar o mensal</a></div>
+        </div>
+        <p class="guarantee"><b>7 dias de garantia.</b> Se não for para você, devolvemos 100% do valor. Depois de pagar, crie sua conta com o mesmo e-mail da compra.</p>
+        <p class="trial">Prefere testar antes? <a href="${esc(withUtm(TRIAL))}" data-plan="teste">Use 3 dias grátis</a>, sem cartão.</p>
+      </div>
+      <p class="more"><a href="/${utm.toString() ? "?" + utm.toString() : ""}">Ver tudo o que o Falalá faz</a> · <button class="back on" id="redo" type="button" style="display:inline;padding:0;font-size:15px">Refazer o quiz</button></p>
+    </section>`;
+    app.querySelectorAll("[data-plan]").forEach(a => a.addEventListener("click", () => track(a.dataset.plan === "teste" ? "Lead" : "InitiateCheckout", { content_name: "Falalá " + a.dataset.plan, value: a.dataset.plan === "anual" ? 197 : a.dataset.plan === "mensal" ? 47 : 0, currency: "BRL" })));
+    document.getElementById("redo").onclick = () => { for (const k in A) delete A[k]; intro(); window.scrollTo(0, 0); };
+    track("ViewContent", { content_name: "Resultado do quiz", hours: hoursMonth });
+    track("QuizComplete", { kids, prep: A.prep, home: A.home, report: A.report, pack: A.pack });
+  }
+
+  function go(n) {
+    step = n;
+    setProgress();
+    window.scrollTo(0, 0);
+    if (step >= Q.length) result(); else question();
+    if (step >= 0 && step < Q.length) track("QuizStep", { step: step + 1 });
+  }
+  back.onclick = () => { if (step > 0) go(step - 1); else intro(); };
+  intro();
+})();
+</script>
+</body>
+</html>
