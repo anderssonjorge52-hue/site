@@ -119,11 +119,24 @@
   .how { padding: 84px 0; background: var(--ink); color: #fff; }
   .how h2 { max-width: 16em; }
   .how .lead { color: #C4C8D3; margin-top: 14px; }
-  .steps { list-style: none; padding: 0; margin: 44px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; counter-reset: s; }
-  .steps li { counter-increment: s; position: relative; padding-top: 64px; }
+  .how .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 64px; align-items: center; }
+  .steps { list-style: none; padding: 0; margin: 40px 0 0; display: grid; gap: 26px; counter-reset: s; }
+  .steps li { counter-increment: s; position: relative; padding-left: 68px; min-height: 48px; }
   .steps li::before { content: counter(s); position: absolute; top: 0; left: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--coral); color: #fff; display: grid; place-items: center; font: 900 22px/1 var(--display); }
   .steps h3 { font-size: 22px; margin-bottom: 8px; }
   .steps p { color: #C4C8D3; font-size: 17px; }
+  .tour { margin: 0; width: min(100%, 380px); justify-self: center; }
+  .tour-player { position: relative; aspect-ratio: 9 / 16; border-radius: 28px; overflow: hidden; background: #2A2F3D; box-shadow: 0 30px 70px -30px rgba(0,0,0,.7); }
+  .tour-player video { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .tour-play { position: absolute; left: 50%; top: 50%; width: 88px; height: 88px; margin: -44px 0 0 -44px; border: 0; border-radius: 50%; background: var(--coral); color: #fff; display: grid; place-items: center; cursor: pointer; box-shadow: 0 12px 30px -8px rgba(194,65,12,.8); transition: transform .15s; }
+  .tour-play:hover { transform: scale(1.06); }
+  .tour-play svg { width: 40px; height: 40px; margin-left: 5px; }
+  .tour.playing .tour-play { display: none; }
+  .tour figcaption { margin-top: 18px; }
+  .tour-label { display: block; color: #C4C8D3; font-size: 15px; margin-bottom: 10px; text-align: center; }
+  .tour-tabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .tour-tabs button { font: 600 15px/1 var(--body); color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: 11px 16px; cursor: pointer; }
+  .tour-tabs button[aria-pressed="true"] { background: #fff; color: var(--ink); border-color: #fff; }
 
   /* recursos */
   .feat { padding: 96px 0 40px; }
@@ -216,7 +229,7 @@
     .hero .wrap, .pain .wrap, .row, .faq .wrap { grid-template-columns: 1fr; gap: 36px; }
     .row.flip .shot { order: 0; }
     .stage { min-height: 520px; max-width: 520px; margin: 0 auto; width: 100%; }
-    .steps { grid-template-columns: 1fr; }
+    .how .wrap { grid-template-columns: 1fr; gap: 44px; }
     .tracks .grid { grid-template-columns: repeat(2, 1fr); }
     .end .box { grid-template-columns: 1fr; padding: 40px 28px; }
   }
@@ -273,7 +286,7 @@
         <p class="lead">Programas de sessões prontos, exercícios em formato de jogo e tarefa de casa que chega pelo WhatsApp da família. Você acompanha cada treino e mostra a evolução para os pais.</p>
         <div class="actions">
           <a class="btn primary" href="https://app.usefalala.online/?cadastro=1" data-trial>Testar 3 dias grátis</a>
-          <a class="btn ghost" href="#como">Ver como funciona</a>
+          <a class="btn ghost" href="#como">Ver o app por dentro</a>
         </div>
         <p class="trial">Sem cartão. Gostou? Continue por <a href="#planos">R$ 47 por mês ou R$ 197 por ano</a>.</p>
         <ul class="facts">
@@ -322,13 +335,32 @@
 
   <section class="how" id="como" aria-labelledby="como-h">
     <div class="wrap">
-      <h2 id="como-h">Do consultório para a casa da criança em três passos</h2>
-      <p class="lead">Você continua no comando da terapia. O Falalá organiza o material e leva o treino para casa.</p>
-      <ol class="steps">
-        <li><h3>Monte o plano</h3><p>Cadastre a criança, marque as queixas e quantas sessões. O Falalá prepara cada sessão e coloca as datas na sua agenda.</p></li>
-        <li><h3>Faça a sessão jogando</h3><p>No tablet ou no celular, a criança ouve, repete e se vê no espelho. Você marca com um toque: falou certinho, com ajuda ou ainda não.</p></li>
-        <li><h3>Mande a tarefa de casa</h3><p>Um link vai para o WhatsApp da família. A criança treina em casa, o responsável grava a voz e o resultado chega no seu painel.</p></li>
-      </ol>
+      <div class="how-text">
+        <h2 id="como-h">Do consultório para a casa da criança em três passos</h2>
+        <p class="lead">Você continua no comando da terapia. O Falalá organiza o material e leva o treino para casa.</p>
+        <ol class="steps">
+          <li><h3>Monte o plano</h3><p>Cadastre a criança, marque as queixas e quantas sessões. O Falalá prepara cada sessão e coloca as datas na sua agenda.</p></li>
+          <li><h3>Faça a sessão jogando</h3><p>No tablet ou no celular, a criança ouve, repete e se vê no espelho. Você marca com um toque: falou certinho, com ajuda ou ainda não.</p></li>
+          <li><h3>Mande a tarefa de casa</h3><p>Um link vai para o WhatsApp da família. A criança treina em casa, o responsável grava a voz e o resultado chega no seu painel.</p></li>
+        </ol>
+      </div>
+      <figure class="tour" aria-label="Vídeos do Falalá por dentro">
+        <div class="tour-player">
+          <video id="tourv" playsinline preload="none" poster="video/poster-1.webp" src="video/falala-1.mp4" controlslist="nodownload"></video>
+          <button class="tour-play" type="button" id="tourplay" aria-label="Assistir ao vídeo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg>
+          </button>
+        </div>
+        <figcaption>
+          <span class="tour-label">Veja o app por dentro, em 25 segundos:</span>
+          <div class="tour-tabs" role="group" aria-label="Escolha o vídeo">
+            <button type="button" data-v="1" aria-pressed="true">Plano pronto</button>
+            <button type="button" data-v="2" aria-pressed="false">Modo criança</button>
+            <button type="button" data-v="3" aria-pressed="false">Tarefa de casa</button>
+            <button type="button" data-v="4" aria-pressed="false">Evolução</button>
+          </div>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -565,6 +597,25 @@
     card.classList.remove("swap"); void card.offsetWidth; card.classList.add("swap");
     show(words[i++ % words.length]);
   }, 2800);
+</script>
+<script>
+(() => {
+  const fig = document.querySelector(".tour"); if (!fig) return;
+  const v = document.getElementById("tourv"), play = document.getElementById("tourplay");
+  const tabs = fig.querySelectorAll(".tour-tabs button");
+  const start = () => { v.controls = true; fig.classList.add("playing"); v.play().catch(() => {}); };
+  play.addEventListener("click", () => { start(); if (window.fbq) fbq("trackCustom", "VideoPlay", { video: v.dataset.n || "1" }); });
+  tabs.forEach(b => b.addEventListener("click", () => {
+    const n = b.dataset.v;
+    tabs.forEach(t => t.setAttribute("aria-pressed", String(t === b)));
+    v.dataset.n = n; v.poster = "video/poster-" + n + ".webp"; v.src = "video/falala-" + n + ".mp4";
+    start();
+  }));
+  v.addEventListener("ended", () => {
+    const i = [...tabs].findIndex(t => t.getAttribute("aria-pressed") === "true");
+    if (i < tabs.length - 1) tabs[i + 1].click();
+  });
+})();
 </script>
 </body>
 </html>
