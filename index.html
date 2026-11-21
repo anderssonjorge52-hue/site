@@ -155,6 +155,14 @@
   .track .w b { color: var(--coral); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; }
   .track p { font-size: 15px; color: var(--ink-2); margin-top: 8px; }
 
+  /* depoimentos */
+  .depos { padding: 24px 0 88px; }
+  .depos h2 { max-width: 16em; }
+  .dgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 340px)); gap: 20px; margin-top: 28px; align-items: start; }
+  .depo { margin: 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--line); background: #fff; box-shadow: 0 20px 40px -28px rgba(31, 35, 48, .35); }
+  .depo img { display: block; width: 100%; height: auto; }
+  @media (max-width: 640px) { .dgrid { grid-template-columns: 1fr; } }
+
   /* planos */
   .plans { padding: 96px 0; background: var(--blush); }
   .plans .head { text-align: center; max-width: 640px; margin: 0 auto 44px; }
@@ -413,6 +421,17 @@
         <div class="track"><div class="w">ga-<b>to</b></div><p>Sílabas, palmas e rimas</p></div>
         <div class="track"><div class="w">fff…</div><p>Respiração com bola que enche e esvazia</p></div>
         <div class="track"><div class="w">bico</div><p>Movimentos de boca, língua e lábios</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="depos" aria-labelledby="dp-h">
+    <div class="wrap">
+      <h2 id="dp-h">Quem já testou o Falalá</h2>
+      <p class="muted" style="margin-top:12px">Mensagens recebidas no WhatsApp de quem testou o app.</p>
+      <div class="dgrid">
+          <figure class="depo"><img src="img/depo/andersson.webp" width="560" height="943" loading="lazy" alt="Mensagem de Andersson no WhatsApp: achou o painel do Falalá claro e fácil de acompanhar; ter a agenda e as sessões no mesmo lugar facilita a organização da rotina."></figure>
+          <figure class="depo"><img src="img/depo/rafael.webp" width="560" height="695" loading="lazy" alt="Mensagem de Rafael Mendes no WhatsApp: o relatório foi a parte de que mais gostou; fica fácil consultar os acertos de cada sessão e as palavras que precisam de atenção, e salvar em PDF ou imprimir."></figure>
       </div>
     </div>
   </section>

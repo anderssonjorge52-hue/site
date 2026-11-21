@@ -90,6 +90,13 @@
   .fit li span { color: var(--ink-2); font-size: 16px; }
   .shot { margin-top: 26px; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 24px 50px -30px rgba(31, 35, 48, .4); background: #fff; }
   .shot img { display: block; width: 100%; height: auto; }
+  .depos { margin-top: 34px; text-align: center; }
+  .depos h2 { font-size: 26px; }
+  .depos .cap { font-size: 15px; color: var(--ink-3); margin-top: 6px; }
+  .dgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; align-items: start; }
+  .depo { margin: 0; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: #fff; box-shadow: 0 16px 34px -24px rgba(31, 35, 48, .35); }
+  .depo img { display: block; width: 100%; height: auto; }
+  @media (max-width: 520px) { .dgrid { grid-template-columns: 1fr; } }
   .offer { margin-top: 32px; text-align: center; }
   .offer h2 { font-size: 28px; }
   .offer .lead { color: var(--ink-2); margin-top: 8px; }
@@ -266,6 +273,11 @@
       </div>
       <div class="fit"><h2>O que o Falalá faz por você</h2><ul>${items.map(i => `<li>${check}<div><b>${esc(i.t)}</b><span>${esc(i.s)}</span></div></li>`).join("")}</ul></div>
       <div class="shot"><img src="/img/plano.webp" width="1600" height="1000" alt="Plano de tratamento no Falalá com 10 sessões, datas e a sessão de hoje pronta para começar"></div>
+      <div class="depos"><h2>Quem já testou o Falalá</h2><p class="cap">Mensagens recebidas no WhatsApp de quem testou o app.</p>
+        <div class="dgrid">
+          <figure class="depo"><img src="/img/depo/andersson.webp" width="560" height="943" loading="lazy" alt="Mensagem de Andersson no WhatsApp: achou o painel do Falalá claro e fácil de acompanhar; ter a agenda e as sessões no mesmo lugar facilita a organização da rotina."></figure>
+          <figure class="depo"><img src="/img/depo/rafael.webp" width="560" height="695" loading="lazy" alt="Mensagem de Rafael Mendes no WhatsApp: o relatório foi a parte de que mais gostou; fica fácil consultar os acertos de cada sessão e as palavras que precisam de atenção, e salvar em PDF ou imprimir."></figure>
+        </div></div>
       <div class="offer" id="oferta">
         <h2>Teste o Falalá por 3 dias, grátis</h2>
         <p class="lead">Crie sua conta e use tudo com seus pacientes. Sem cartão.</p>
