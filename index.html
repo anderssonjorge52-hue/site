@@ -82,6 +82,7 @@
   .trial { margin-top: 18px; font-size: 16px; color: var(--ink-2); }
   .trial a { color: var(--coral-ink); font-weight: 700; }
   .plans .trial { text-align: center; margin-top: 22px; }
+  .trial-big { margin-top: 22px; }
   .facts { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 26px; font-size: 15px; color: var(--ink-2); padding: 0; list-style: none; }
   .facts li { display: inline-flex; align-items: center; gap: 7px; }
   .facts svg { width: 18px; height: 18px; color: var(--green); }
@@ -224,7 +225,8 @@
     .pgrid { grid-template-columns: 1fr; }
     .plan { padding: 28px 24px; }
     .after { grid-template-columns: 1fr; text-align: left; }
-    .top .btn { display: none; }
+    .top .wrap { gap: 14px; }
+    .top .btn.sm { min-height: 40px; padding: 0 14px; font-size: 15px; }
     .zap span { display: none; }
     .zap { padding: 14px; }
   }
@@ -250,7 +252,7 @@
       <a href="#duvidas">Dúvidas</a>
     </nav>
     <a class="in" href="https://app.usefalala.online/">Entrar</a>
-    <a class="btn primary sm" href="#planos">Assinar</a>
+    <a class="btn primary sm" href="https://app.usefalala.online/?cadastro=1" data-trial>Testar grátis</a>
   </div>
 </header>
 
@@ -262,14 +264,14 @@
         <h1>A lição de casa de fala que a criança pede para fazer.</h1>
         <p class="lead">Programas de sessões prontos, exercícios em formato de jogo e tarefa de casa que chega pelo WhatsApp da família. Você acompanha cada treino e mostra a evolução para os pais.</p>
         <div class="actions">
-          <a class="btn primary" href="#planos">Quero usar o Falalá</a>
+          <a class="btn primary" href="https://app.usefalala.online/?cadastro=1" data-trial>Testar 3 dias grátis</a>
           <a class="btn ghost" href="#como">Ver como funciona</a>
         </div>
-        <p class="trial">Prefere testar antes? <a href="https://app.usefalala.online/?cadastro=1">Comece com 3 dias grátis</a>, sem cartão.</p>
+        <p class="trial">Sem cartão. Gostou? Continue por <a href="#planos">R$ 47 por mês ou R$ 197 por ano</a>.</p>
         <ul class="facts">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Abre no navegador, sem instalar nada</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Celular, tablet ou computador</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>7 dias de garantia</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>3 dias grátis, sem cartão</li>
         </ul>
       </div>
 
@@ -418,8 +420,9 @@
   <section class="plans" id="planos" aria-labelledby="pl-h">
     <div class="wrap">
       <div class="head">
-        <h2 id="pl-h">Escolha seu plano</h2>
-        <p>Pacientes ilimitados nos dois planos. Pague no Pix ou no cartão e comece a usar no mesmo dia.</p>
+        <h2 id="pl-h">Teste grátis por 3 dias</h2>
+        <p>Crie sua conta e use tudo, com pacientes de verdade. Sem cartão. Quando o teste acabar, escolha o plano para continuar.</p>
+        <a class="btn primary trial-big" href="https://app.usefalala.online/?cadastro=1" data-trial>Começar meu teste grátis</a>
       </div>
       <div class="pgrid">
         <div class="plan">
@@ -451,9 +454,9 @@
       </div>
       <div class="after">
         <div class="seal" aria-hidden="true">7<small>DIAS</small></div>
-        <p><b>Garantia de 7 dias.</b> Assine, use com seus pacientes e, se não for para você, peça o reembolso em até 7 dias e devolvemos 100% do valor. Depois do pagamento, crie sua conta com o <b>mesmo e-mail da compra</b> e o acesso já entra liberado.</p>
+        <p><b>Garantia de 7 dias na assinatura.</b> Se assinar e não for para você, peça o reembolso em até 7 dias e devolvemos 100% do valor. Se assinar antes de criar a conta, use o <b>mesmo e-mail da compra</b> e o acesso já entra liberado.</p>
       </div>
-      <p class="trial">Ainda em dúvida? <a href="https://app.usefalala.online/?cadastro=1">Teste 3 dias grátis</a>, sem cartão. Quando acabar, você escolhe o plano dentro do app.</p>
+      <p class="trial">Os planos têm pacientes ilimitados. Pague no Pix ou no cartão, aqui ou de dentro do app quando o teste acabar.</p>
     </div>
   </section>
 
@@ -483,9 +486,9 @@
       <div class="box">
         <div>
           <h2 id="end-h">Sua próxima sessão pode começar com o material pronto.</h2>
-          <p>R$ 47 por mês ou R$ 197 por ano. 7 dias de garantia.</p>
+          <p>Teste grátis por 3 dias, sem cartão. Depois, R$ 47 por mês ou R$ 197 por ano.</p>
         </div>
-        <a class="btn dark" href="#planos">Escolher meu plano</a>
+        <a class="btn dark" href="https://app.usefalala.online/?cadastro=1" data-trial>Testar 3 dias grátis</a>
       </div>
     </div>
   </section>
@@ -504,6 +507,18 @@
 </a>
 
 <script>
+  // leva as UTMs do anúncio para o teste e para o checkout
+  (() => {
+    const keep = new URLSearchParams();
+    new URLSearchParams(location.search).forEach((v, k) => { if (/^(utm_|fbclid|src|sck)/.test(k)) keep.set(k, v); });
+    if (![...keep.keys()].length) return;
+    document.querySelectorAll('a[href^="https://app.usefalala.online"], a[href^="https://checkout.wiven"]').forEach(a => {
+      const u = new URL(a.href); keep.forEach((v, k) => u.searchParams.set(k, v)); a.href = u.toString();
+    });
+  })();
+  document.querySelectorAll("[data-trial]").forEach(a => a.addEventListener("click", () => { try { window.fbq && fbq("track", "Lead", { content_name: "Teste grátis 3 dias" }); } catch (e) {} }));
+  document.querySelectorAll("[data-plan]").forEach(a => a.addEventListener("click", () => { try { window.fbq && fbq("track", "InitiateCheckout", { content_name: "Falalá " + a.dataset.plan, value: a.dataset.plan === "anual" ? 197 : 47, currency: "BRL" }); } catch (e) {} }));
+
   // cabeçalho com linha ao rolar
   const bar = document.getElementById("top");
   const onScroll = () => bar.classList.toggle("scrolled", window.scrollY > 8);

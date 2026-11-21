@@ -102,6 +102,8 @@
   .plan .price span { font: 600 16px var(--body); color: var(--ink-2); }
   .plan .note { font-size: 14px; color: var(--ink-2); min-height: 40px; }
   .plan .btn { margin-top: 10px; min-height: 52px; font-size: 17px; padding: 0 12px; }
+  .trial-main { margin-top: 20px; }
+  .or { margin-top: 26px; font-size: 15px; color: var(--ink-2); }
   .guarantee { margin-top: 16px; font-size: 15px; color: var(--ink-2); }
   .guarantee b { color: var(--ink); }
   .trial { margin-top: 12px; font-size: 16px; color: var(--ink-2); }
@@ -265,14 +267,15 @@
       <div class="fit"><h2>O que o Falalá faz por você</h2><ul>${items.map(i => `<li>${check}<div><b>${esc(i.t)}</b><span>${esc(i.s)}</span></div></li>`).join("")}</ul></div>
       <div class="shot"><img src="/img/plano.webp" width="1600" height="1000" alt="Plano de tratamento no Falalá com 10 sessões, datas e a sessão de hoje pronta para começar"></div>
       <div class="offer" id="oferta">
-        <h2>Comece hoje com o material pronto</h2>
-        <p class="lead">Pacientes ilimitados. Pix ou cartão, e você usa no mesmo dia.</p>
+        <h2>Teste o Falalá por 3 dias, grátis</h2>
+        <p class="lead">Crie sua conta e use tudo com seus pacientes. Sem cartão.</p>
+        <a class="btn primary block trial-main" data-plan="teste" href="${esc(withUtm(TRIAL))}">Começar meu teste grátis</a>
+        <p class="or">Ou assine agora e já comece sem limite de tempo:</p>
         <div class="plans">
-          <div class="plan best"><span class="tagp">Mais econômico</span><h3>Anual</h3><div class="price">R$ 197 <span>/ano</span></div><p class="note">Sai por R$ 16,42 por mês.</p><a class="btn primary" data-plan="anual" href="${esc(withUtm(CHECKOUT.anual))}">Assinar o anual</a></div>
+          <div class="plan best"><span class="tagp">Mais econômico</span><h3>Anual</h3><div class="price">R$ 197 <span>/ano</span></div><p class="note">Sai por R$ 16,42 por mês.</p><a class="btn ghost" data-plan="anual" href="${esc(withUtm(CHECKOUT.anual))}">Assinar o anual</a></div>
           <div class="plan"><h3>Mensal</h3><div class="price">R$ 47 <span>/mês</span></div><p class="note">Cancele quando quiser.</p><a class="btn ghost" data-plan="mensal" href="${esc(withUtm(CHECKOUT.mensal))}">Assinar o mensal</a></div>
         </div>
-        <p class="guarantee"><b>7 dias de garantia.</b> Se não for para você, devolvemos 100% do valor. Depois de pagar, crie sua conta com o mesmo e-mail da compra.</p>
-        <p class="trial">Prefere testar antes? <a href="${esc(withUtm(TRIAL))}" data-plan="teste">Use 3 dias grátis</a>, sem cartão.</p>
+        <p class="guarantee"><b>7 dias de garantia na assinatura.</b> Se não for para você, devolvemos 100% do valor. Depois de pagar, crie sua conta com o mesmo e-mail da compra.</p>
       </div>
       <p class="more"><a href="/${utm.toString() ? "?" + utm.toString() : ""}">Ver tudo o que o Falalá faz</a> · <button class="back on" id="redo" type="button" style="display:inline;padding:0;font-size:15px">Refazer o quiz</button></p>
     </section>`;
