@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Falalá: exercícios de fala em formato de jogo para fonoaudiólogas</title>
+<meta name="description" content="App para fonoaudiólogas que atendem crianças: programas de sessões prontos, exercícios de fala em formato de jogo, tarefa de casa por link no WhatsApp da família e relatório de evolução.">
+<meta property="og:title" content="Falalá: a lição de casa de fala que a criança pede para fazer">
+<meta property="og:description" content="Programas de sessões prontos, modo criança com áudio e espelho, tarefa de casa por link e relatório de evolução para os pais.">
+<meta property="og:image" content="https://usefalala.online/img/og.png">
+<meta property="og:url" content="https://usefalala.online/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#FF6A3D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 4c11 0 20 8.4 20 19.5S35 43 24 43c-3 0-5.8-.6-8.3-1.7L6 44l2.6-8.6C5.7 32 4 28 4 23.5 4 12.4 13 4 24 4z' fill='%23FF6A3D'/%3E%3Cpath d='M15 25c2.5 5 15.5 5 18 0' stroke='%23fff' stroke-width='3.4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='17.5' cy='18' r='2.6' fill='%23fff'/%3E%3Ccircle cx='30.5' cy='18' r='2.6' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+<!-- Pixel da Meta: cole aqui o código quando criar o pixel -->
+<style>
+  :root {
+    --coral: #FF6A3D;
+    --coral-ink: #C2410C;
+    --coral-soft: #FFE7DC;
+    --ink: #1F2330;
+    --ink-2: #555B6B;
+    --ink-3: #868B98;
+    --paper: #FFFCF9;
+    --blush: #FFF2EB;
+    --line: #EFE4DC;
+    --green: #1F8A70;
+    --green-soft: #DDF2EA;
+    --sun: #FFC93C;
+    --display: "Nunito", "Trebuchet MS", system-ui, sans-serif;
+    --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --wrap: 1120px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; font-family: var(--body); font-size: 18px; line-height: 1.6; color: var(--ink); background: var(--paper); }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.08; letter-spacing: -.02em; margin: 0; }
+  h2 { font-size: clamp(32px, 4.4vw, 48px); }
+  h3 { font-size: 24px; letter-spacing: -.01em; }
+  p { margin: 0; }
+  .wrap { width: min(var(--wrap), 100% - 40px); margin-inline: auto; }
+  .lead { font-size: 20px; color: var(--ink-2); max-width: 36em; }
+  .muted { color: var(--ink-2); }
+  .small { font-size: 15px; }
+  :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 8px; }
+
+  /* botões */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 0 28px; border-radius: 16px;
+    font: 700 18px/1 var(--body); text-decoration: none; border: 2px solid transparent; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+  .btn.primary { background: var(--coral); color: #fff; box-shadow: 0 4px 0 #D9502A; }
+  .btn.primary:hover { transform: translateY(-1px); box-shadow: 0 5px 0 #D9502A; }
+  .btn.primary:active { transform: translateY(3px); box-shadow: 0 1px 0 #D9502A; }
+  .btn.ghost { background: #fff; color: var(--ink); border-color: var(--line); }
+  .btn.ghost:hover { border-color: var(--ink-3); }
+  .btn.dark { background: var(--ink); color: #fff; box-shadow: 0 4px 0 #0E1018; }
+  .btn.sm { min-height: 44px; padding: 0 18px; font-size: 16px; border-radius: 12px; }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+
+  /* topo */
+  .top { position: sticky; top: 0; z-index: 20; background: rgba(255, 252, 249, .92); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+  .top.scrolled { border-bottom-color: var(--line); }
+  .top .wrap { display: flex; align-items: center; gap: 28px; height: 72px; }
+  .logo { display: inline-flex; align-items: center; gap: 10px; font: 900 26px/1 var(--display); text-decoration: none; letter-spacing: -.02em; }
+  .logo svg { width: 38px; height: 38px; }
+  .top nav { display: flex; gap: 24px; margin-left: auto; }
+  .top nav a { text-decoration: none; font-weight: 600; font-size: 16px; color: var(--ink-2); }
+  .top nav a:hover { color: var(--ink); }
+  .top .in { font-weight: 600; font-size: 16px; color: var(--ink-2); text-decoration: none; }
+
+  /* herói */
+  .hero { padding: 64px 0 40px; overflow: hidden; }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+  .for { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 16px; color: var(--coral-ink); background: var(--coral-soft); padding: 6px 14px; border-radius: 999px; }
+  .hero h1 { font-size: clamp(42px, 6vw, 72px); margin: 20px 0 22px; }
+  .hero .lead { margin-bottom: 32px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .trial { margin-top: 18px; font-size: 16px; color: var(--ink-2); }
+  .trial a { color: var(--coral-ink); font-weight: 700; }
+  .plans .trial { text-align: center; margin-top: 22px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 26px; font-size: 15px; color: var(--ink-2); padding: 0; list-style: none; }
+  .facts li { display: inline-flex; align-items: center; gap: 7px; }
+  .facts svg { width: 18px; height: 18px; color: var(--green); }
+
+  /* palco da palavra: a assinatura visual */
+  .stage { position: relative; min-height: 580px; max-width: 560px; justify-self: end; width: 100%; }
+  .card-word { position: absolute; left: 0; top: 70px; width: 310px; padding: 30px 24px 26px; background: #fff; border-radius: 34px;
+    box-shadow: 0 2px 0 var(--line), 0 30px 60px -24px rgba(31, 35, 48, .28); text-align: center; z-index: 2; }
+  .card-word .pic { font-size: 104px; line-height: 1; height: 116px; display: grid; place-items: center; }
+  .card-word .word { font: 900 56px/1.1 var(--display); letter-spacing: .02em; margin-top: 18px; text-transform: uppercase; }
+  .card-word .word b { color: var(--coral); font-weight: 900; text-decoration: underline; text-decoration-thickness: 6px; text-underline-offset: 8px; }
+  .card-word .sound { margin-top: 14px; font-size: 15px; color: var(--ink-3); }
+  .card-word .marks { display: flex; gap: 8px; justify-content: center; margin-top: 22px; }
+  .card-word .marks span { font: 800 14px/1.15 var(--display); padding: 10px 10px; border-radius: 12px; }
+  .m1 { background: #FFD3C4; } .m2 { background: #FFE7A3; } .m3 { background: #BFEBDC; }
+  .card-word.swap .pic, .card-word.swap .word, .card-word.swap .sound { animation: swap .5s ease; }
+  @keyframes swap { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: none; } }
+  .phone { position: absolute; right: 8px; top: 0; width: 262px; border-radius: 40px; padding: 10px; background: var(--ink); box-shadow: 0 30px 60px -20px rgba(31, 35, 48, .45); transform: rotate(4deg); }
+  .phone img { border-radius: 31px; }
+  .mascot { position: absolute; left: 196px; bottom: 30px; width: 110px; z-index: 3; transform: rotate(-8deg); }
+
+  /* dores */
+  .pain { padding: 80px 0; }
+  .pain .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: start; }
+  .pain ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .pain li { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .pain li:last-child { border-bottom: 0; }
+  .pain li .x { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--coral-soft); color: var(--coral-ink); font: 900 20px/1 var(--display); }
+  .pain li b { display: block; font-size: 19px; }
+  .pain li span { color: var(--ink-2); font-size: 16px; }
+  .pain .turn { margin-top: 22px; font: 800 22px/1.35 var(--display); }
+
+  /* como funciona */
+  .how { padding: 84px 0; background: var(--ink); color: #fff; }
+  .how h2 { max-width: 16em; }
+  .how .lead { color: #C4C8D3; margin-top: 14px; }
+  .steps { list-style: none; padding: 0; margin: 44px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; counter-reset: s; }
+  .steps li { counter-increment: s; position: relative; padding-top: 64px; }
+  .steps li::before { content: counter(s); position: absolute; top: 0; left: 0; width: 48px; height: 48px; border-radius: 50%; background: var(--coral); color: #fff; display: grid; place-items: center; font: 900 22px/1 var(--display); }
+  .steps h3 { font-size: 22px; margin-bottom: 8px; }
+  .steps p { color: #C4C8D3; font-size: 17px; }
+
+  /* recursos */
+  .feat { padding: 96px 0 40px; }
+  .feat > .wrap > h2 { max-width: 15em; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 56px 0; }
+  .row + .row { border-top: 1px solid var(--line); }
+  .row.flip .shot { order: -1; }
+  .row h3 { font-size: 32px; margin-bottom: 14px; }
+  .row p { color: var(--ink-2); }
+  .row ul { margin: 18px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .row li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; font-size: 17px; }
+  .row li svg { width: 22px; height: 22px; color: var(--green); margin-top: 2px; }
+  .browser { border-radius: 18px; overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: 0 24px 50px -28px rgba(31, 35, 48, .35); }
+  .browser .bar { height: 30px; display: flex; gap: 7px; align-items: center; padding: 0 14px; background: var(--blush); border-bottom: 1px solid var(--line); }
+  .browser .bar i { width: 10px; height: 10px; border-radius: 50%; background: #E9D6CB; }
+  .phones { display: flex; justify-content: center; gap: 22px; }
+  .phones .mini { width: 46%; max-width: 250px; border-radius: 34px; padding: 8px; background: var(--ink); box-shadow: 0 24px 50px -24px rgba(31, 35, 48, .45); }
+  .phones .mini img { border-radius: 27px; }
+  .phones .mini:nth-child(2) { transform: translateY(36px); }
+
+  /* trilhas */
+  .tracks { padding: 72px 0 88px; }
+  .tracks .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 32px; }
+  .track { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 20px; }
+  .track .w { font: 900 26px/1 var(--display); }
+  .track .w b { color: var(--coral); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; }
+  .track p { font-size: 15px; color: var(--ink-2); margin-top: 8px; }
+
+  /* planos */
+  .plans { padding: 96px 0; background: var(--blush); }
+  .plans .head { text-align: center; max-width: 640px; margin: 0 auto 44px; }
+  .plans .head p { margin-top: 14px; color: var(--ink-2); }
+  .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 860px; margin: 0 auto; }
+  .plan { background: #fff; border-radius: 28px; padding: 34px; border: 2px solid var(--line); display: flex; flex-direction: column; }
+  .plan.best { border-color: var(--coral); position: relative; }
+  .plan .tag { position: absolute; top: -15px; left: 34px; background: var(--coral); color: #fff; font-weight: 700; font-size: 14px; padding: 6px 12px; border-radius: 999px; }
+  .plan h3 { font-size: 22px; }
+  .price { display: flex; align-items: baseline; gap: 6px; margin: 14px 0 4px; }
+  .price strong { font: 900 54px/1 var(--display); letter-spacing: -.03em; }
+  .price span { color: var(--ink-2); font-weight: 600; }
+  .price-note { font-size: 15px; color: var(--ink-2); min-height: 24px; }
+  .price-note s { color: var(--ink-3); }
+  .plan ul { list-style: none; padding: 0; margin: 22px 0 28px; display: grid; gap: 10px; font-size: 16px; }
+  .plan li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; }
+  .plan li svg { width: 20px; height: 20px; color: var(--green); margin-top: 3px; }
+  .plan .btn { margin-top: auto; width: 100%; }
+  .after { max-width: 860px; margin: 26px auto 0; display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; background: #fff; border-radius: 20px; padding: 18px 22px; font-size: 16px; color: var(--ink-2); }
+  .after .seal { width: 64px; height: 64px; border-radius: 50%; background: var(--green-soft); color: var(--green); display: grid; place-items: center; font: 900 22px/1 var(--display); text-align: center; }
+  .after .seal small { display: block; font-size: 10px; font-weight: 800; }
+  .after b { color: var(--ink); }
+
+  /* dúvidas */
+  .faq { padding: 96px 0; }
+  .faq .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: start; }
+  .faq .side p { margin-top: 14px; color: var(--ink-2); }
+  details { border-bottom: 1px solid var(--line); }
+  details:first-of-type { border-top: 1px solid var(--line); }
+  summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 20px 0; font: 800 19px/1.3 var(--display); }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font: 900 26px/1 var(--display); color: var(--coral); transition: transform .2s; flex: none; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { padding: 0 0 22px; color: var(--ink-2); max-width: 38em; }
+
+  /* fim */
+  .end { padding: 0 0 96px; }
+  .end .box { background: var(--coral); color: #fff; border-radius: 36px; padding: 56px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; position: relative; overflow: hidden; }
+  .end h2 { font-size: clamp(30px, 4vw, 44px); max-width: 14em; }
+  .end p { margin-top: 12px; color: #FFE7DC; }
+  .end .btn.dark { position: relative; z-index: 1; }
+  footer { border-top: 1px solid var(--line); padding: 36px 0 110px; font-size: 15px; color: var(--ink-2); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; }
+  footer a { color: var(--ink-2); }
+  .zap { position: fixed; right: 18px; bottom: 18px; z-index: 30; display: inline-flex; align-items: center; gap: 8px; background: #1F8A70; color: #fff; text-decoration: none; font-weight: 700; font-size: 15px; padding: 12px 16px; border-radius: 999px; box-shadow: 0 10px 24px -8px rgba(31, 35, 48, .45); }
+  .zap svg { width: 20px; height: 20px; }
+
+  @media (max-width: 960px) {
+    .top nav { display: none; }
+    .top .in { margin-left: auto; }
+    .hero .wrap, .pain .wrap, .row, .faq .wrap { grid-template-columns: 1fr; gap: 36px; }
+    .row.flip .shot { order: 0; }
+    .stage { min-height: 520px; max-width: 520px; margin: 0 auto; width: 100%; }
+    .steps { grid-template-columns: 1fr; }
+    .tracks .grid { grid-template-columns: repeat(2, 1fr); }
+    .end .box { grid-template-columns: 1fr; padding: 40px 28px; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    .hero { padding-top: 36px; }
+    .stage { min-height: 450px; }
+    .card-word { width: 78%; padding: 26px 18px 22px; top: 54px; }
+    .card-word .pic { font-size: 84px; height: 96px; }
+    .card-word .word { font-size: 44px; }
+    .card-word .marks span { padding: 10px 9px; font-size: 13px; }
+    .phone { width: 52%; }
+    .mascot { left: auto; right: 8%; bottom: -6px; width: 86px; }
+    .pgrid { grid-template-columns: 1fr; }
+    .plan { padding: 28px 24px; }
+    .after { grid-template-columns: 1fr; text-align: left; }
+    .top .btn { display: none; }
+    .zap span { display: none; }
+    .zap { padding: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .card-word.swap .pic, .card-word.swap .word, .card-word.swap .sound { animation: none; }
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Falalá, início">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4c11 0 20 8.4 20 19.5S35 43 24 43c-3 0-5.8-.6-8.3-1.7L6 44l2.6-8.6C5.7 32 4 28 4 23.5 4 12.4 13 4 24 4z" fill="#FF6A3D"/><path d="M15 25c2.5 5 15.5 5 18 0" stroke="#fff" stroke-width="3.4" fill="none" stroke-linecap="round"/><circle cx="17.5" cy="18" r="2.6" fill="#fff"/><circle cx="30.5" cy="18" r="2.6" fill="#fff"/></svg>
+      Falalá
+    </a>
+    <nav aria-label="Seções">
+      <a href="#como">Como funciona</a>
+      <a href="#recursos">O que tem</a>
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="in" href="https://app.usefalala.online/">Entrar</a>
+    <a class="btn primary sm" href="#planos">Assinar</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="for">Para fonoaudiólogas que atendem crianças</span>
+        <h1>A lição de casa de fala que a criança pede para fazer.</h1>
+        <p class="lead">Programas de sessões prontos, exercícios em formato de jogo e tarefa de casa que chega pelo WhatsApp da família. Você acompanha cada treino e mostra a evolução para os pais.</p>
+        <div class="actions">
+          <a class="btn primary" href="#planos">Quero usar o Falalá</a>
+          <a class="btn ghost" href="#como">Ver como funciona</a>
+        </div>
+        <p class="trial">Prefere testar antes? <a href="https://app.usefalala.online/?cadastro=1">Comece com 3 dias grátis</a>, sem cartão.</p>
+        <ul class="facts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Abre no navegador, sem instalar nada</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Celular, tablet ou computador</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>7 dias de garantia</li>
+        </ul>
+      </div>
+
+      <div class="stage" aria-label="Exemplo do modo criança do Falalá">
+        <div class="phone"><img src="img/kid.webp" width="600" height="1299" alt="Tela do modo criança no celular: a palavra ARARA com o R destacado, botões Ouvir, Devagar e Gravar" fetchpriority="high"></div>
+        <div class="card-word" id="word" aria-live="off">
+          <div class="pic" aria-hidden="true">🐸</div>
+          <div class="word">sa<b>p</b>o</div>
+          <div class="sound">Som do S no começo</div>
+          <div class="marks" aria-hidden="true"><span class="m1">Ainda não</span><span class="m2">Com ajuda</span><span class="m3">Falou certinho!</span></div>
+        </div>
+        <svg class="mascot" viewBox="0 0 200 200" aria-hidden="true">
+          <path d="M100 22c46 0 78 30 78 74s-30 82-78 82-78-38-78-82 32-74 78-74z" fill="#FFC93C"/>
+          <ellipse cx="62" cy="58" rx="16" ry="10" fill="#fff" opacity=".35"/>
+          <circle cx="74" cy="88" r="15" fill="#fff"/><circle cx="126" cy="88" r="15" fill="#fff"/>
+          <circle cx="77" cy="91" r="7" fill="#24324A"/><circle cx="129" cy="91" r="7" fill="#24324A"/>
+          <circle cx="56" cy="114" r="8" fill="#FFB0A0" opacity=".7"/><circle cx="144" cy="114" r="8" fill="#FFB0A0" opacity=".7"/>
+          <ellipse cx="100" cy="124" rx="20" ry="16" fill="#24324A"/><ellipse cx="100" cy="131" rx="11" ry="6" fill="#FF8FA3"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="pain" aria-labelledby="pain-h">
+    <div class="wrap">
+      <div>
+        <h2 id="pain-h">A terapia é ótima. O problema é a semana entre uma sessão e outra.</h2>
+      </div>
+      <div>
+        <ul>
+          <li><span class="x" aria-hidden="true">×</span><div><b>Horas montando material</b><span>Figura no Canva, lista de palavras, folha para imprimir. Toda semana, para cada criança.</span></div></li>
+          <li><span class="x" aria-hidden="true">×</span><div><b>A família promete treinar e não treina</b><span>A folha fica na mochila. Ninguém sabe se fez, nem como fez.</span></div></li>
+          <li><span class="x" aria-hidden="true">×</span><div><b>A criança cansa do exercício</b><span>Repetir palavra solta vira obrigação, e a atenção acaba no terceiro item.</span></div></li>
+          <li><span class="x" aria-hidden="true">×</span><div><b>Falta número para mostrar evolução</b><span>Os pais perguntam se está melhorando e você responde de memória.</span></div></li>
+        </ul>
+        <p class="turn">O Falalá cuida dessa parte: o exercício vira jogo, chega em casa pelo WhatsApp e volta para você com o resultado.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="como" aria-labelledby="como-h">
+    <div class="wrap">
+      <h2 id="como-h">Do consultório para a casa da criança em três passos</h2>
+      <p class="lead">Você continua no comando da terapia. O Falalá organiza o material e leva o treino para casa.</p>
+      <ol class="steps">
+        <li><h3>Cadastre o paciente</h3><p>Nome, idade e o som que ele está trabalhando. O Falalá sugere o programa de sessões certo.</p></li>
+        <li><h3>Faça a sessão jogando</h3><p>No tablet ou no celular, a criança ouve, repete e se vê no espelho. Você marca com um toque: falou certinho, com ajuda ou ainda não.</p></li>
+        <li><h3>Mande a tarefa de casa</h3><p>Um link vai para o WhatsApp da família. A criança treina em casa, o responsável grava a voz e o resultado chega no seu painel.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="feat" id="recursos" aria-labelledby="rec-h">
+    <div class="wrap">
+      <h2 id="rec-h">Tudo o que você usa no atendimento, num lugar só</h2>
+
+      <div class="row">
+        <div>
+          <h3>Programas de sessões prontos</h3>
+          <p>Cada som tem um roteiro de sessões, da respiração ao trava-língua. Você abre a sessão do dia e já sabe o que fazer, quanto tempo leva e o que mandar para casa.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Respiração, movimentos de boca, escuta, palavras, frases e trava-línguas</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Objetivo, materiais e orientação de cada exercício</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Crie suas próprias listas de palavras e imagens quando quiser</li>
+          </ul>
+        </div>
+        <div class="shot browser"><div class="bar"><i></i><i></i><i></i></div><img src="img/programa.webp" width="1600" height="1000" loading="lazy" alt="Programa do R no Falalá: sessão 1 com respiração, movimentos de boca e escuta, cada exercício com repetições e tempo"></div>
+      </div>
+
+      <div class="row flip">
+        <div>
+          <h3>Modo criança, feito para segurar a atenção</h3>
+          <p>Uma palavra por vez, com figura grande, som marcado e voz para ouvir de novo. A criança ganha estrelas, ouve a própria gravação e se vê no espelho da câmera.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Botões de Ouvir e Devagar para a criança imitar</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Gravação da voz para você ouvir depois</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Bola de respiração para inspirar e soprar no ritmo certo</li>
+          </ul>
+        </div>
+        <div class="shot phones">
+          <div class="mini"><img src="img/kid.webp" width="600" height="1299" loading="lazy" alt="Modo criança com a palavra ARARA"></div>
+          <div class="mini"><img src="img/kid2.webp" width="600" height="1299" loading="lazy" alt="Modo criança na palavra seguinte do exercício"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <h3>Tarefa de casa que a família consegue fazer</h3>
+          <p>Você escolhe os exercícios, escreve um recado e manda o link. A família abre no celular, sem baixar app e sem criar conta. Cada treino feito aparece no seu painel, com acertos e áudio.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Explicação passo a passo para o responsável</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Metas de dias na semana, com os dias já feitos marcados</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Você troca a tarefa quando quiser, e o link antigo para de funcionar</li>
+          </ul>
+        </div>
+        <div class="shot phones">
+          <div class="mini"><img src="img/casa.webp" width="600" height="1299" loading="lazy" alt="Página da tarefa de casa no celular da família, com recado da fono e dias da semana feitos"></div>
+        </div>
+      </div>
+
+      <div class="row flip">
+        <div>
+          <h3>Evolução que dá para mostrar aos pais</h3>
+          <p>Cada sessão e cada treino em casa viram um ponto no gráfico. Você vê onde a criança trava e imprime um relatório simples para entregar à família.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Acerto por sessão, média e progresso desde o início</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Palavras que mais precisam de atenção</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Relatório pronto para imprimir ou salvar em PDF</li>
+          </ul>
+        </div>
+        <div class="shot browser"><div class="bar"><i></i><i></i><i></i></div><img src="img/paciente.webp" width="1600" height="1000" loading="lazy" alt="Página do paciente no Falalá com gráfico de evolução de 50% para 80% de acerto e o roteiro do programa do R"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tracks" aria-labelledby="tr-h">
+    <div class="wrap">
+      <h2 id="tr-h">8 trilhas para os sons que mais aparecem no consultório</h2>
+      <div class="grid">
+        <div class="track"><div class="w">a<b>r</b>a<b>r</b>a</div><p>Som do R: fraco, forte, encontros e final</p></div>
+        <div class="track"><div class="w"><b>s</b>apo</div><p>S e Z, com escuta e pares mínimos</p></div>
+        <div class="track"><div class="w"><b>l</b>ua</div><p>L e LH em palavras e frases</p></div>
+        <div class="track"><div class="w"><b>ch</b>uva</div><p>CH e J, do som isolado à frase</p></div>
+        <div class="track"><div class="w"><b>p</b>ato · <b>b</b>ato</div><p>Trocas de sons parecidos</p></div>
+        <div class="track"><div class="w">ga-<b>to</b></div><p>Sílabas, palmas e rimas</p></div>
+        <div class="track"><div class="w">fff…</div><p>Respiração com bola que enche e esvazia</p></div>
+        <div class="track"><div class="w">bico</div><p>Movimentos de boca, língua e lábios</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="plans" id="planos" aria-labelledby="pl-h">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="pl-h">Escolha seu plano</h2>
+        <p>Pacientes ilimitados nos dois planos. Pague no Pix ou no cartão e comece a usar no mesmo dia.</p>
+      </div>
+      <div class="pgrid">
+        <div class="plan">
+          <h3>Mensal</h3>
+          <div class="price"><strong>R$ 47</strong><span>/mês</span></div>
+          <p class="price-note">Cancele quando quiser.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Pacientes e sessões ilimitados</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>8 trilhas e programas de sessões prontos</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Tarefa de casa por link, com gravação</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Evolução e relatório de cada paciente</li>
+          </ul>
+          <a class="btn ghost" href="https://checkout.wiven.com.br/checkout/cmwqq03aq0kle01psjudxxkbk?offer=BCIMVBF" data-plan="mensal">Assinar o mensal</a>
+        </div>
+        <div class="plan best">
+          <span class="tag">Mais econômico</span>
+          <h3>Anual</h3>
+          <div class="price"><strong>R$ 197</strong><span>/ano</span></div>
+          <p class="price-note">Sai por R$ 16,42 por mês. <s>R$ 564</s> no mensal.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Tudo do plano mensal</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Economia de R$ 367 no ano</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Novos exercícios e programas sem custo a mais</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Um pagamento só, sem se preocupar o ano todo</li>
+          </ul>
+          <a class="btn primary" href="https://checkout.wiven.com.br/checkout/cmwqq03aq0kle01psjudxxkbk?offer=RL5YEJL" data-plan="anual">Assinar o anual</a>
+        </div>
+      </div>
+      <div class="after">
+        <div class="seal" aria-hidden="true">7<small>DIAS</small></div>
+        <p><b>Garantia de 7 dias.</b> Assine, use com seus pacientes e, se não for para você, peça o reembolso em até 7 dias e devolvemos 100% do valor. Depois do pagamento, crie sua conta com o <b>mesmo e-mail da compra</b> e o acesso já entra liberado.</p>
+      </div>
+      <p class="trial">Ainda em dúvida? <a href="https://app.usefalala.online/?cadastro=1">Teste 3 dias grátis</a>, sem cartão. Quando acabar, você escolhe o plano dentro do app.</p>
+    </div>
+  </section>
+
+  <section class="faq" id="duvidas" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="side">
+        <h2 id="faq-h">Dúvidas</h2>
+        <p>Não achou a sua? Fale com a gente no <a href="https://wa.me/5598988273662?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20Fala%C3%A1">WhatsApp</a>.</p>
+      </div>
+      <div>
+        <details><summary>Posso testar antes de pagar?</summary><p>Pode. Crie sua conta e use tudo por 3 dias, sem cartão. Quando o teste acabar, seus pacientes ficam guardados e você escolhe um plano para continuar. Se preferir assinar direto, a garantia de 7 dias também vale.</p></details>
+        <details><summary>Preciso instalar alguma coisa?</summary><p>Não. O Falalá abre no navegador, em app.usefalala.online. Funciona no celular, no tablet e no computador. Se quiser, dá para adicionar um atalho na tela inicial.</p></details>
+        <details><summary>Os pais precisam criar conta ou baixar app?</summary><p>Não. Você manda um link pelo WhatsApp e a família abre direto no celular. Só você, fonoaudióloga, tem login.</p></details>
+        <details><summary>Para qual idade o Falalá serve?</summary><p>Foi pensado para crianças em idade de alfabetização e pré-escola, por volta dos 4 aos 10 anos. Quem decide se o material serve para cada paciente é você.</p></details>
+        <details><summary>O Falalá substitui a terapia?</summary><p>Não. É uma ferramenta de apoio para a fonoaudióloga: organiza as sessões, deixa o treino mais divertido e leva a prática para casa. A avaliação e a conduta continuam sendo suas.</p></details>
+        <details><summary>Posso usar minhas próprias palavras e imagens?</summary><p>Pode. Além das trilhas prontas, você cria listas com as palavras que quiser, usa as figuras do app ou envia as suas.</p></details>
+        <details><summary>E os dados dos meus pacientes?</summary><p>Cada conta só enxerga os próprios pacientes. Guardamos só o necessário: nome ou apelido, idade, sessões e, quando você ativa, as gravações. As gravações ficam em armazenamento privado.</p></details>
+        <details><summary>Como funciona o pagamento?</summary><p>Pelo checkout da Wiven, no Pix ou no cartão. O mensal renova todo mês e o anual uma vez por ano. Você cancela quando quiser e continua usando até o fim do período pago.</p></details>
+        <details><summary>Já paguei. Como entro?</summary><p>Acesse app.usefalala.online, toque em Criar conta e use o mesmo e-mail da compra. O acesso já entra liberado. Se der qualquer problema, chame no WhatsApp.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="end" aria-labelledby="end-h">
+    <div class="wrap">
+      <div class="box">
+        <div>
+          <h2 id="end-h">Sua próxima sessão pode começar com o material pronto.</h2>
+          <p>R$ 47 por mês ou R$ 197 por ano. 7 dias de garantia.</p>
+        </div>
+        <a class="btn dark" href="#planos">Escolher meu plano</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Falalá · Ferramenta de apoio para fonoaudiólogas</span>
+    <span><a href="mailto:anderssonjorge52@gmail.com">anderssonjorge52@gmail.com</a> · <a href="https://wa.me/5598988273662">WhatsApp (98) 98827-3662</a> · <a href="https://app.usefalala.online/">Entrar no app</a></span>
+  </div>
+</footer>
+
+<a class="zap" href="https://wa.me/5598988273662?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Falal%C3%A1" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2s.2-1.1.1-1.2-.2-.2-.4-.3z"/></svg>
+  <span>Dúvidas? Chama no WhatsApp</span>
+</a>
+
+<script>
+  // cabeçalho com linha ao rolar
+  const bar = document.getElementById("top");
+  const onScroll = () => bar.classList.toggle("scrolled", window.scrollY > 8);
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  // o cartão do herói troca de palavra, como no modo criança
+  const words = [
+    { pic: "🐸", html: "sa<b>p</b>o", sound: "Troca P e B" },
+    { pic: "🦜", html: "a<b>r</b>a<b>r</b>a", sound: "R fraquinho entre vogais" },
+    { pic: "🌙", html: "<b>l</b>ua", sound: "Som do L no começo" },
+    { pic: "🌧️", html: "<b>ch</b>uva", sound: "Som do CH" },
+    { pic: "🐍", html: "<b>s</b>e<b>r</b>pente", sound: "S e R na mesma palavra" }
+  ];
+  const card = document.getElementById("word");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let i = 1;
+  const show = (w) => {
+    card.querySelector(".pic").textContent = w.pic;
+    card.querySelector(".word").innerHTML = w.html;
+    card.querySelector(".sound").textContent = w.sound;
+  };
+  show(words[0]);
+  if (!reduce) setInterval(() => {
+    if (document.hidden) return;
+    card.classList.remove("swap"); void card.offsetWidth; card.classList.add("swap");
+    show(words[i++ % words.length]);
+  }, 2800);
+</script>
+</body>
+</html>
