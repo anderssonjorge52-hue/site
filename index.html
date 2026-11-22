@@ -94,6 +94,17 @@ fbq('track', 'PageView');
   .facts svg { width: 18px; height: 18px; color: var(--green); }
 
   /* palco da palavra: a assinatura visual */
+  .vsl { margin: 0; justify-self: end; width: min(100%, 400px); }
+  .vsl-box { position: relative; aspect-ratio: 9 / 16; border-radius: 30px; overflow: hidden; background: #FFE3D6; box-shadow: 0 40px 80px -36px rgba(120,40,10,.55); border: 8px solid #fff; }
+  .vsl-box video { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .vsl-sound { position: absolute; left: 50%; top: 20px; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; width: max-content; max-width: 92%;
+    border: 0; border-radius: 999px; padding: 12px 20px 12px 14px; background: var(--coral); color: #fff; cursor: pointer; text-align: left;
+    box-shadow: 0 14px 30px -10px rgba(194,65,12,.8); animation: vslpulse 2.2s ease-in-out infinite; }
+  .vsl-sound svg { width: 34px; height: 34px; flex: 0 0 34px; }
+  .vsl-sound span { font: 500 14px/1.25 var(--body); }
+  .vsl-sound b { display: block; font: 800 17px/1.2 var(--display); }
+  .vsl.on .vsl-sound { display: none; }
+  @keyframes vslpulse { 50% { transform: translateX(-50%) scale(1.04); } }
   .stage { position: relative; min-height: 580px; max-width: 560px; justify-self: end; width: 100%; }
   .card-word { position: absolute; left: 0; top: 70px; width: 310px; padding: 30px 24px 26px; background: #fff; border-radius: 34px;
     box-shadow: 0 2px 0 var(--line), 0 30px 60px -24px rgba(31, 35, 48, .28); text-align: center; z-index: 2; }
@@ -235,6 +246,15 @@ fbq('track', 'PageView');
     .hero .wrap, .pain .wrap, .row, .faq .wrap { grid-template-columns: 1fr; gap: 36px; }
     .row.flip .shot { order: 0; }
     .stage { min-height: 520px; max-width: 520px; margin: 0 auto; width: 100%; }
+    .hero .wrap { gap: 0; }
+    .hero-text { display: contents; }
+    .hero .for { order: 1; justify-self: start; }
+    .hero h1 { order: 2; margin-bottom: 18px; }
+    .vsl { order: 3; justify-self: center; width: min(100%, 360px); margin: 4px auto 26px; }
+    .hero .lead { order: 4; }
+    .hero .actions { order: 5; }
+    .hero .trial { order: 6; }
+    .hero .facts { order: 7; }
     .how .wrap { grid-template-columns: 1fr; gap: 44px; }
     .tracks .grid { grid-template-columns: repeat(2, 1fr); }
     .end .box { grid-template-columns: 1fr; padding: 40px 28px; }
@@ -286,7 +306,7 @@ fbq('track', 'PageView');
 <main>
   <section class="hero">
     <div class="wrap">
-      <div>
+      <div class="hero-text">
         <span class="for">Para fonoaudiólogas que atendem crianças</span>
         <h1>A lição de casa de fala que a criança pede para fazer.</h1>
         <p class="lead">Programas de sessões prontos, exercícios em formato de jogo e tarefa de casa que chega pelo WhatsApp da família. Você acompanha cada treino e mostra a evolução para os pais.</p>
@@ -294,7 +314,7 @@ fbq('track', 'PageView');
           <a class="btn primary" href="https://app.usefalala.online/?cadastro=1" data-trial>Testar 3 dias grátis</a>
           <a class="btn ghost" href="#como">Ver o app por dentro</a>
         </div>
-        <p class="trial">Sem cartão. Gostou? Continue por <a href="#planos">R$ 47 por mês ou R$ 197 por ano</a>.</p>
+        <p class="trial">Sem cartão. Gostou? Continue por <a href="#planos">R$ 29,90 por mês ou R$ 97 uma vez só</a>.</p>
         <ul class="facts">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Abre no navegador, sem instalar nada</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Celular, tablet ou computador</li>
@@ -302,23 +322,15 @@ fbq('track', 'PageView');
         </ul>
       </div>
 
-      <div class="stage" aria-label="Exemplo do modo criança do Falalá">
-        <div class="phone"><img src="img/kid.webp" width="600" height="1299" alt="Tela do modo criança no celular: a palavra ARARA com o R destacado, botões Ouvir, Devagar e Gravar" fetchpriority="high"></div>
-        <div class="card-word" id="word" aria-live="off">
-          <div class="pic" aria-hidden="true">🐸</div>
-          <div class="word">sa<b>p</b>o</div>
-          <div class="sound">Som do S no começo</div>
-          <div class="marks" aria-hidden="true"><span class="m1">Ainda não</span><span class="m2">Com ajuda</span><span class="m3">Falou certinho!</span></div>
+      <figure class="vsl" aria-label="Vídeo: veja o Falalá por dentro em 2 minutos">
+        <div class="vsl-box">
+          <video id="vslv" src="video/vsl.mp4" poster="video/vsl-poster.webp" muted autoplay loop playsinline preload="auto" controlslist="nodownload"></video>
+          <button class="vsl-sound" type="button" id="vslsound">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.6 7.6 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span><b>Toque para ouvir</b>Veja o app por dentro em 2 min</span>
+          </button>
         </div>
-        <svg class="mascot" viewBox="0 0 200 200" aria-hidden="true">
-          <path d="M100 22c46 0 78 30 78 74s-30 82-78 82-78-38-78-82 32-74 78-74z" fill="#FFC93C"/>
-          <ellipse cx="62" cy="58" rx="16" ry="10" fill="#fff" opacity=".35"/>
-          <circle cx="74" cy="88" r="15" fill="#fff"/><circle cx="126" cy="88" r="15" fill="#fff"/>
-          <circle cx="77" cy="91" r="7" fill="#24324A"/><circle cx="129" cy="91" r="7" fill="#24324A"/>
-          <circle cx="56" cy="114" r="8" fill="#FFB0A0" opacity=".7"/><circle cx="144" cy="114" r="8" fill="#FFB0A0" opacity=".7"/>
-          <ellipse cx="100" cy="124" rx="20" ry="16" fill="#24324A"/><ellipse cx="100" cy="131" rx="11" ry="6" fill="#FF8FA3"/>
-        </svg>
-      </div>
+      </figure>
     </div>
   </section>
 
@@ -484,7 +496,7 @@ fbq('track', 'PageView');
       <div class="pgrid">
         <div class="plan">
           <h3>Mensal</h3>
-          <div class="price"><strong>R$ 47</strong><span>/mês</span></div>
+          <div class="price"><strong>R$ 29,90</strong><span>/mês</span></div>
           <p class="price-note">Cancele quando quiser.</p>
           <ul>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Pacientes e sessões ilimitados</li>
@@ -496,22 +508,22 @@ fbq('track', 'PageView');
           <a class="btn ghost" href="https://checkout.wiven.com.br/checkout/cmwqq03aq0kle01psjudxxkbk?offer=BCIMVBF" data-plan="mensal">Assinar o mensal</a>
         </div>
         <div class="plan best">
-          <span class="tag">Mais econômico</span>
-          <h3>Anual</h3>
-          <div class="price"><strong>R$ 197</strong><span>/ano</span></div>
-          <p class="price-note">Sai por R$ 16,42 por mês. <s>R$ 564</s> no mensal.</p>
+          <span class="tag">Pague uma vez só</span>
+          <h3>Vitalício</h3>
+          <div class="price"><strong>R$ 97</strong><span>único</span></div>
+          <p class="price-note">Sem mensalidade. Em 4 meses já sai mais barato que o mensal.</p>
           <ul>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Tudo do plano mensal</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Economia de R$ 367 no ano</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Acesso para sempre, sem renovação</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Novos exercícios e programas sem custo a mais</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Um pagamento só, sem se preocupar o ano todo</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Um pagamento só, no Pix ou no cartão</li>
           </ul>
-          <a class="btn primary" href="https://checkout.wiven.com.br/checkout/cmwqq03aq0kle01psjudxxkbk?offer=RL5YEJL" data-plan="anual">Assinar o anual</a>
+          <a class="btn primary" href="https://checkout.wiven.com.br/checkout/cmwrcrjwu0efz01pwpc96sxet?offer=SULQGWM" data-plan="vitalicio">Comprar o vitalício</a>
         </div>
       </div>
       <div class="after">
         <div class="seal" aria-hidden="true">7<small>DIAS</small></div>
-        <p><b>Garantia de 7 dias na assinatura.</b> Se assinar e não for para você, peça o reembolso em até 7 dias e devolvemos 100% do valor. Se assinar antes de criar a conta, use o <b>mesmo e-mail da compra</b> e o acesso já entra liberado.</p>
+        <p><b>Garantia de 7 dias.</b> Se comprar e não for para você, peça o reembolso em até 7 dias e devolvemos 100% do valor. Se comprar antes de criar a conta, use o <b>mesmo e-mail da compra</b> e o acesso já entra liberado.</p>
       </div>
       <p class="trial">Os planos têm pacientes ilimitados. Pague no Pix ou no cartão, aqui ou de dentro do app quando o teste acabar.</p>
     </div>
@@ -532,7 +544,7 @@ fbq('track', 'PageView');
         <details><summary>O Falalá substitui a terapia?</summary><p>Não. É uma ferramenta de apoio para a fonoaudióloga: organiza as sessões, deixa o treino mais divertido e leva a prática para casa. A avaliação e a conduta continuam sendo suas.</p></details>
         <details><summary>Posso usar minhas próprias palavras e imagens?</summary><p>Pode. Além das trilhas prontas, você cria listas com as palavras que quiser, usa as figuras do app ou envia as suas.</p></details>
         <details><summary>E os dados dos meus pacientes?</summary><p>Cada conta só enxerga os próprios pacientes. Guardamos só o necessário: nome ou apelido, idade, sessões e, quando você ativa, as gravações. As gravações ficam em armazenamento privado.</p></details>
-        <details><summary>Como funciona o pagamento?</summary><p>Pelo checkout da Wiven, no Pix ou no cartão. O mensal renova todo mês e o anual uma vez por ano. Você cancela quando quiser e continua usando até o fim do período pago.</p></details>
+        <details><summary>Como funciona o pagamento?</summary><p>Pelo checkout da Wiven, no Pix ou no cartão. O mensal renova todo mês: você cancela quando quiser e continua usando até o fim do mês pago. O vitalício é um pagamento único, sem renovação, e o acesso não acaba.</p></details>
         <details><summary>Já paguei. Como entro?</summary><p>Acesse app.usefalala.online, toque em Criar conta e use o mesmo e-mail da compra. O acesso já entra liberado. Se der qualquer problema, chame no WhatsApp.</p></details>
       </div>
     </div>
@@ -543,7 +555,7 @@ fbq('track', 'PageView');
       <div class="box">
         <div>
           <h2 id="end-h">Sua próxima sessão pode começar com o material pronto.</h2>
-          <p>Teste grátis por 3 dias, sem cartão. Depois, R$ 47 por mês ou R$ 197 por ano.</p>
+          <p>Teste grátis por 3 dias, sem cartão. Depois, R$ 29,90 por mês ou R$ 97 uma vez só.</p>
         </div>
         <a class="btn dark" href="https://app.usefalala.online/?cadastro=1" data-trial>Testar 3 dias grátis</a>
       </div>
@@ -574,35 +586,32 @@ fbq('track', 'PageView');
     });
   })();
   document.querySelectorAll("[data-trial]").forEach(a => a.addEventListener("click", () => { try { window.fbq && fbq("track", "Lead", { content_name: "Teste grátis 3 dias" }); } catch (e) {} }));
-  document.querySelectorAll("[data-plan]").forEach(a => a.addEventListener("click", () => { try { window.fbq && fbq("track", "InitiateCheckout", { content_name: "Falalá " + a.dataset.plan, value: a.dataset.plan === "anual" ? 197 : 47, currency: "BRL" }); } catch (e) {} }));
+  document.querySelectorAll("[data-plan]").forEach(a => a.addEventListener("click", () => { try { window.fbq && fbq("track", "InitiateCheckout", { content_name: "Falalá " + a.dataset.plan, value: a.dataset.plan === "vitalicio" ? 97 : 29.9, currency: "BRL" }); } catch (e) {} }));
 
   // cabeçalho com linha ao rolar
   const bar = document.getElementById("top");
   const onScroll = () => bar.classList.toggle("scrolled", window.scrollY > 8);
   addEventListener("scroll", onScroll, { passive: true }); onScroll();
 
-  // o cartão do herói troca de palavra, como no modo criança
-  const words = [
-    { pic: "🐸", html: "sa<b>p</b>o", sound: "Troca P e B" },
-    { pic: "🦜", html: "a<b>r</b>a<b>r</b>a", sound: "R fraquinho entre vogais" },
-    { pic: "🌙", html: "<b>l</b>ua", sound: "Som do L no começo" },
-    { pic: "🌧️", html: "<b>ch</b>uva", sound: "Som do CH" },
-    { pic: "🐍", html: "<b>s</b>e<b>r</b>pente", sound: "S e R na mesma palavra" }
-  ];
-  const card = document.getElementById("word");
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let i = 1;
-  const show = (w) => {
-    card.querySelector(".pic").textContent = w.pic;
-    card.querySelector(".word").innerHTML = w.html;
-    card.querySelector(".sound").textContent = w.sound;
-  };
-  show(words[0]);
-  if (!reduce) setInterval(() => {
-    if (document.hidden) return;
-    card.classList.remove("swap"); void card.offsetWidth; card.classList.add("swap");
-    show(words[i++ % words.length]);
-  }, 2800);
+  // VSL do topo: roda sem som; ao tocar, volta ao início com som
+  (() => {
+    const fig = document.querySelector(".vsl"), v = document.getElementById("vslv"), btn = document.getElementById("vslsound");
+    if (!v) return;
+    const fire = (n, d) => { try { window.fbq && fbq("trackCustom", n, d || {}); } catch (e) {} };
+    const sent = {};
+    btn.addEventListener("click", () => {
+      v.muted = false; v.loop = false; v.currentTime = 0; v.controls = true; fig.classList.add("on");
+      v.play().catch(() => {}); fire("VSLPlay");
+    });
+    v.addEventListener("timeupdate", () => {
+      if (v.muted || !v.duration) return;
+      const p = v.currentTime / v.duration;
+      [[0.25, "VSL25"], [0.5, "VSL50"], [0.75, "VSL75"]].forEach(([k, n]) => { if (p >= k && !sent[n]) { sent[n] = 1; fire(n); } });
+    });
+    v.addEventListener("ended", () => { if (!sent.end) { sent.end = 1; fire("VSLComplete"); } });
+    const pause = () => { if (v.muted && document.hidden) v.pause(); };
+    document.addEventListener("visibilitychange", () => { if (!document.hidden && v.muted) v.play().catch(() => {}); else pause(); });
+  })();
 </script>
 <script>
 (() => {

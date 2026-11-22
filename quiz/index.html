@@ -158,7 +158,7 @@ fbq('track', 'PageView');
 (function () {
   const CHECKOUT = {
     mensal: "https://checkout.wiven.com.br/checkout/cmwqq03aq0kle01psjudxxkbk?offer=BCIMVBF",
-    anual: "https://checkout.wiven.com.br/checkout/cmwqq03aq0kle01psjudxxkbk?offer=RL5YEJL"
+    vitalicio: "https://checkout.wiven.com.br/checkout/cmwrcrjwu0efz01pwpc96sxet?offer=SULQGWM"
   };
   const TRIAL = "https://app.usefalala.online/?cadastro=1";
 
@@ -288,16 +288,16 @@ fbq('track', 'PageView');
         <h2>Teste o Falalá por 3 dias, grátis</h2>
         <p class="lead">Crie sua conta e use tudo com seus pacientes. Sem cartão.</p>
         <a class="btn primary block trial-main" data-plan="teste" href="${esc(withUtm(TRIAL))}">Começar meu teste grátis</a>
-        <p class="or">Ou assine agora e já comece sem limite de tempo:</p>
+        <p class="or">Ou compre agora e já comece sem limite de tempo:</p>
         <div class="plans">
-          <div class="plan best"><span class="tagp">Mais econômico</span><h3>Anual</h3><div class="price">R$ 197 <span>/ano</span></div><p class="note">Sai por R$ 16,42 por mês.</p><a class="btn ghost" data-plan="anual" href="${esc(withUtm(CHECKOUT.anual))}">Assinar o anual</a></div>
-          <div class="plan"><h3>Mensal</h3><div class="price">R$ 47 <span>/mês</span></div><p class="note">Cancele quando quiser.</p><a class="btn ghost" data-plan="mensal" href="${esc(withUtm(CHECKOUT.mensal))}">Assinar o mensal</a></div>
+          <div class="plan best"><span class="tagp">Pague uma vez só</span><h3>Vitalício</h3><div class="price">R$ 97 <span>único</span></div><p class="note">Sem mensalidade, acesso para sempre.</p><a class="btn ghost" data-plan="vitalicio" href="${esc(withUtm(CHECKOUT.vitalicio))}">Comprar o vitalício</a></div>
+          <div class="plan"><h3>Mensal</h3><div class="price">R$ 29,90 <span>/mês</span></div><p class="note">Cancele quando quiser.</p><a class="btn ghost" data-plan="mensal" href="${esc(withUtm(CHECKOUT.mensal))}">Assinar o mensal</a></div>
         </div>
-        <p class="guarantee"><b>7 dias de garantia na assinatura.</b> Se não for para você, devolvemos 100% do valor. Depois de pagar, crie sua conta com o mesmo e-mail da compra.</p>
+        <p class="guarantee"><b>7 dias de garantia.</b> Se não for para você, devolvemos 100% do valor. Depois de pagar, crie sua conta com o mesmo e-mail da compra.</p>
       </div>
       <p class="more"><a href="/${utm.toString() ? "?" + utm.toString() : ""}">Ver tudo o que o Falalá faz</a> · <button class="back on" id="redo" type="button" style="display:inline;padding:0;font-size:15px">Refazer o quiz</button></p>
     </section>`;
-    app.querySelectorAll("[data-plan]").forEach(a => a.addEventListener("click", () => track(a.dataset.plan === "teste" ? "Lead" : "InitiateCheckout", { content_name: "Falalá " + a.dataset.plan, value: a.dataset.plan === "anual" ? 197 : a.dataset.plan === "mensal" ? 47 : 0, currency: "BRL" })));
+    app.querySelectorAll("[data-plan]").forEach(a => a.addEventListener("click", () => track(a.dataset.plan === "teste" ? "Lead" : "InitiateCheckout", { content_name: "Falalá " + a.dataset.plan, value: a.dataset.plan === "vitalicio" ? 97 : a.dataset.plan === "mensal" ? 29.9 : 0, currency: "BRL" })));
     document.getElementById("redo").onclick = () => { for (const k in A) delete A[k]; intro(); window.scrollTo(0, 0); };
     track("ViewContent", { content_name: "Resultado do quiz", hours: hoursMonth });
     track("QuizComplete", { kids, prep: A.prep, home: A.home, report: A.report, pack: A.pack });
